@@ -11,7 +11,6 @@ require("bufferline").setup {
             highlight = "FileExplorer"
          }
       },
-      separator_style = 'slant'
    }
 }
 vim.cmd("hi FileExplorer gui=bold,italic")

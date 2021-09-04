@@ -1,4 +1,4 @@
-require('packer').startup(function(use)
+return require('packer').startup(function(use)
    ----------------------------------------------------------------------
    --                           PACKER.NVIM                            --
    ----------------------------------------------------------------------
@@ -132,7 +132,7 @@ require('packer').startup(function(use)
    --                         NVIM-BUFFERLINE                          --
    ----------------------------------------------------------------------
    use {
-      'akinsho/nvim-bufferline.lua',
+      'akinsho/bufferline.nvim',
       config = function()
          require('plugins.bufferline')
       end,
@@ -315,8 +315,9 @@ require('packer').startup(function(use)
    ----------------------------------------------------------------------
    use {
       'Pocco81/Catppuccino.nvim',
+      after = 'bufferline.nvim',
       config = function()
          require('plugins.catppuccino')
-      end
+      end,
    }
 end)

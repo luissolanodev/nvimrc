@@ -1,144 +1,322 @@
-return require("packer").startup(function()
-   use("wbthomason/packer.nvim")
+require('packer').startup(function(use)
+   ----------------------------------------------------------------------
+   --                           PACKER.NVIM                            --
+   ----------------------------------------------------------------------
+   use 'wbthomason/packer.nvim'
+   ----------------------------------------------------------------------
+   --                          NVIM-LSPCONFIG                          --
+   ----------------------------------------------------------------------
+   use {
+      'neovim/nvim-lspconfig',
+      config = function()
+         require('plugins.lspconfig')
+      end
+   }
+   ----------------------------------------------------------------------
+   --                         NVIM-LSPINSTALL                          --
+   ----------------------------------------------------------------------
+   use('kabouzeid/nvim-lspinstall')
+   ----------------------------------------------------------------------
+   --                          LSP_SIGNATURE                           --
+   ----------------------------------------------------------------------
+   use('ray-x/lsp_signature.nvim')
+   ----------------------------------------------------------------------
+   --                             NVIM-CMP                             --
+   ----------------------------------------------------------------------
+   use {
+      'hrsh7th/nvim-cmp',
+      config = function()
+         require('plugins.cmp')
+      end
+   }
+   ----------------------------------------------------------------------
+   --                            CMP-BUFFER                            --
+   ----------------------------------------------------------------------
+   use('hrsh7th/cmp-buffer')
+   ----------------------------------------------------------------------
+   --                             CMP-PATH                             --
+   ----------------------------------------------------------------------
+   use('hrsh7th/cmp-path')
+   ----------------------------------------------------------------------
+   --                             CMP-CALC                             --
+   ----------------------------------------------------------------------
+   use('hrsh7th/cmp-calc')
+   ----------------------------------------------------------------------
+   --                           CMP-NVIM-LUA                           --
+   ----------------------------------------------------------------------
+   use('hrsh7th/cmp-nvim-lua')
+   ----------------------------------------------------------------------
+   --                           CMP-NVIM-LSP                           --
+   ----------------------------------------------------------------------
+   use('hrsh7th/cmp-nvim-lsp')
+   ----------------------------------------------------------------------
+   --                            CMP-EMOJI                             --
+   ----------------------------------------------------------------------
+   use('hrsh7th/cmp-emoji')
+   ----------------------------------------------------------------------
+   --                           CMP_LUASNIP                            --
+   ----------------------------------------------------------------------
+   use('saadparwaiz1/cmp_luasnip')
+   ----------------------------------------------------------------------
+   --                             CMP-LOOK                             --
+   ----------------------------------------------------------------------
+   use('octaltree/cmp-look')
+   ----------------------------------------------------------------------
+   --                           CMP-TABNINE                            --
+   ----------------------------------------------------------------------
+   use { 'tzachar/cmp-tabnine', run='./install.sh' }
+   ----------------------------------------------------------------------
+   --                            COMPE-TMUX                            --
+   ----------------------------------------------------------------------
+   use { 'andersevenrud/compe-tmux', branch = 'cmp' }
+   ----------------------------------------------------------------------
+   --                             LUASNIP                              --
+   ----------------------------------------------------------------------
+   use {
+      'L3MON4D3/LuaSnip',
+      config = function()
+         require('plugins.luasnip')
+      end
 
-   ------------------ Editor ------------------
-   use {
-      {
-         "neovim/nvim-lspconfig",
-         config = function()
-            require("plugins.lspconfig")
-         end
-      },
-      -- {
-         -- "glepnir/lspsaga.nvim",
-         -- config = function()
-            -- require("plugins.lspsaga")
-         -- end
-      -- },
-      {
-         "onsails/lspkind-nvim",
-         config = function()
-            require("plugins.lspkind")
-         end
-      },
-      "kabouzeid/nvim-lspinstall",
    }
-
+   ----------------------------------------------------------------------
+   --                        FRIENDLY-SNIPPETS                         --
+   ----------------------------------------------------------------------
+   use 'rafamadriz/friendly-snippets'
+   ----------------------------------------------------------------------
+   --                         NVIM-TREESITTER                          --
+   ----------------------------------------------------------------------
    use {
-      {
-         "hrsh7th/nvim-compe",
-         config = function()
-            require("plugins.compe")
-         end
-      },
-      {
-         "L3MON4D3/LuaSnip",
-         config = function()
-            require("plugins.luasnip")
-         end
-      },
-      "rafamadriz/friendly-snippets",
-   }
-   use {
-      {
-         "nvim-treesitter/nvim-treesitter",
-         config = function()
-            require("plugins.treesitter")
-         end
-      },
-      "windwp/nvim-ts-autotag",
-      "p00f/nvim-ts-rainbow",
-   }
-   use {
-      "windwp/nvim-autopairs",
+      'nvim-treesitter/nvim-treesitter',
       config = function()
-         require("plugins.autopairs")
+         require('plugins.treesitter')
       end
    }
-   use("editorconfig/editorconfig-vim")
-
-   --------------- Miscellaneous ---------------
-
-   use("kyazdani42/nvim-web-devicons")
+   ----------------------------------------------------------------------
+   --                         NVIM-TS-AUTOTAG                          --
+   ----------------------------------------------------------------------
    use {
-      "kyazdani42/nvim-tree.lua",
+      'windwp/nvim-ts-autotag',
+      requires = 'nvim-treesitter/nvim-treesitter'
+   }
+   ----------------------------------------------------------------------
+   --                         NVIM-TS-RAINBOW                          --
+   ----------------------------------------------------------------------
+   use {
+      'p00f/nvim-ts-rainbow',
+      requires = 'nvim-treesitter/nvim-treesitter'
+   }
+   ----------------------------------------------------------------------
+   --                          NVIM-AUTOPAIRS                          --
+   ----------------------------------------------------------------------
+   use {
+      'windwp/nvim-autopairs',
       config = function()
-         require("plugins.nvimtree")
+         require('nvim-autopairs').setup()
       end
    }
+   ----------------------------------------------------------------------
+   --                         EDITORCONFIG-VIM                         --
+   ----------------------------------------------------------------------
+   use 'editorconfig/editorconfig-vim'
+   ----------------------------------------------------------------------
+   --                        NVIM-WEB-DEVICONS                         --
+   ----------------------------------------------------------------------
    use {
-      "akinsho/nvim-bufferline.lua",
+      'kyazdani42/nvim-web-devicons',
       config = function()
-         require("plugins.bufferline")
+         require('plugins.devicons')
       end
    }
+   ----------------------------------------------------------------------
+   --                         NVIM-BUFFERLINE                          --
+   ----------------------------------------------------------------------
    use {
-      "hoob3rt/lualine.nvim",
+      'akinsho/nvim-bufferline.lua',
       config = function()
-         require("plugins.lualine")
+         require('plugins.bufferline')
+      end,
+      requires = 'kyazdani42/nvim-web-devicons'
+   }
+   ----------------------------------------------------------------------
+   --                            NVIM-TREE                             --
+   ----------------------------------------------------------------------
+   use {
+      'kyazdani42/nvim-tree.lua',
+      config = function()
+         require('plugins.nvimtree')
       end
    }
-   use("yamatsum/nvim-cursorline")
+   ----------------------------------------------------------------------
+   --                             LUALINE                              --
+   ----------------------------------------------------------------------
    use {
-      "folke/zen-mode.nvim",
+      'hoob3rt/lualine.nvim',
       config = function()
-         require("plugins.zenmode")
+         require('plugins.lualine')
       end
    }
+   ----------------------------------------------------------------------
+   --                             ZEN-MODE                             --
+   ----------------------------------------------------------------------
    use {
-      "folke/twilight.nvim",
+      'folke/zen-mode.nvim',
       config = function()
-         require("twilight").setup()
+         require('plugins.zenmode')
       end
    }
+   ----------------------------------------------------------------------
+   --                             TWILIGHT                             --
+   ----------------------------------------------------------------------
    use {
-      "winston0410/commented.nvim",
+      'folke/twilight.nvim',
       config = function()
-         require("commented").setup()
+         require('twilight').setup()
       end
    }
-   use("vhyrro/neorg")
-   use {
-      "lewis6991/gitsigns.nvim",
-      config = function()
-         require("plugins.gitsigns")
-      end
-   }
-   use {
-      "lukas-reineke/indent-blankline.nvim",
-      config = function()
-         require("plugins.blankline")
-      end
-   }
-   use("norcalli/nvim-colorizer.lua")
-   use("jbyuki/venn.nvim")
-   use("famiu/bufdelete.nvim")
-   -- use("code-biscuits/nvim-biscuits")
-   use {
-      "nvim-telescope/telescope.nvim",
-      requires = {
-         {"nvim-lua/popup.nvim"},
-         {"nvim-lua/plenary.nvim"}
-      },
-      config = function()
-         require("plugins.telescope")
-      end
-   }
-   use("nvim-telescope/telescope-media-files.nvim")
-   use("nvim-telescope/telescope-fzf-native.nvim")
+   ----------------------------------------------------------------------
+   --                          DASHBOARD-NVIM                          --
+   ----------------------------------------------------------------------
    -- use {
-      -- "folke/which-key.nvim",
+   -- 'glepnir/dashboard-nvim',
+   -- config = function()
+   -- require('plugins.dashboard')
+   -- end
+   -- }
+   ----------------------------------------------------------------------
+   --                          COMMENTED.NVIM                          --
+   ----------------------------------------------------------------------
+   use {
+      'winston0410/commented.nvim',
+      config = function()
+         require('commented').setup()
+      end
+   }
+   ----------------------------------------------------------------------
+   --                              NEORG                               --
+   ----------------------------------------------------------------------
+   -- use {
+   -- 'vhyrro/neorg',
+   -- config = function()
+   -- require('plugins.neorg')
+   -- end
+   -- }
+   ----------------------------------------------------------------------
+   --                             GITSIGNS                             --
+   ----------------------------------------------------------------------
+   use {
+      'lewis6991/gitsigns.nvim',
+      config = function()
+         require('gitsigns').setup()
+      end
+   }
+   ----------------------------------------------------------------------
+   --                         INDENT-BLANKLINE                         --
+   ----------------------------------------------------------------------
+   use {
+      'lukas-reineke/indent-blankline.nvim',
+      config = function()
+         require('plugins.blankline')
+      end
+   }
+   ----------------------------------------------------------------------
+   --                          NVIM-COLORIZER                          --
+   ----------------------------------------------------------------------
+   use{
+      'norcalli/nvim-colorizer.lua',
+      config = function()
+         require('plugins.colorizer')
+      end
+   }
+   ----------------------------------------------------------------------
+   --                            VENN.NVIM                             --
+   ----------------------------------------------------------------------
+   use('jbyuki/venn.nvim')
+   ----------------------------------------------------------------------
+   --                          BUFDELETE.NVIM                          --
+   ----------------------------------------------------------------------
+   use {
+      'famiu/bufdelete.nvim',
+      config = function()
+         require('plugins.bufdelete')
+      end
+   }
+   ----------------------------------------------------------------------
+   --                          TELESCOPE.NVIM                          --
+   ----------------------------------------------------------------------
+   use {
+      'nvim-telescope/telescope.nvim',
+      requires = {
+         {'nvim-lua/popup.nvim'},
+         {'nvim-lua/plenary.nvim'}
+      },
+      config = function()
+         require('plugins.telescope')
+      end
+   }
+   -- ----------------------------------------------------------------------
+   -- --                    TELESCOPE-FZF-NATIVE.NVIM                     --
+   -- ----------------------------------------------------------------------
+   use{
+      'nvim-telescope/telescope-fzf-native.nvim',
+      run = 'make'
+   }
+   ----------------------------------------------------------------------
+   --                           TROUBLE.NVIM                           --
+   ----------------------------------------------------------------------
+   -- use {
+   -- 'folke/trouble.nvim',
+   -- requires = 'kyazdani42/nvim-web-devicons',
+   -- config = function()
+   -- require('plugins.trouble')
+   -- end
+   -- }
+   ----------------------------------------------------------------------
+   --                        TODO-COMMENTS.NVIM                        --
+   ----------------------------------------------------------------------
+   use {
+      'folke/todo-comments.nvim',
+      requires = 'nvim-lua/plenary.nvim',
+      config = function()
+         require('todo-comments').setup()
+      end
+   }
+   ----------------------------------------------------------------------
+   --                          WHICH-KEY.NVIM                          --
+   ----------------------------------------------------------------------
+   -- use {
+   -- 'folke/which-key.nvim',
+   -- config = function()
+   -- require('plugins.whichkey')
+   -- end
+   -- }
+   --
+   ----------------------------------------------------------------------
+   --                        NVIM-COMMENT-FRAME                        --
+   ----------------------------------------------------------------------
+   use {
+      's1n7ax/nvim-comment-frame',
+      config = function()
+         require('nvim-comment-frame').setup()
+      end,
+      requires = 'treesitter/nvim-treesitter'
+   }
+   ----------------------------------------------------------------------
+   --                          NEBULOUS.NVIM                           --
+   ----------------------------------------------------------------------
+   -- use {
+      -- 'LuisxSullivaN/nebulous.nvim',
       -- config = function()
-         -- require("plugins.whichkey")
+         -- require('plugins.nebulous')
       -- end
    -- }
-
-
-   ------------------ Colors ------------------
+   ----------------------------------------------------------------------
+   --                            CATPUCCINO                            --
+   ----------------------------------------------------------------------
    use {
-      "folke/tokyonight.nvim",
+      'Pocco81/Catppuccino.nvim',
       config = function()
-         require("plugins.tokyonight")
+         require('plugins.catppuccino')
       end
    }
 end)

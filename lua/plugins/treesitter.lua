@@ -8,7 +8,8 @@ require("nvim-treesitter.configs").setup {
       "python",
       "java",
       "cpp",
-      "lua"
+      "lua",
+      "toml"
    },
    indent = {
       enable = true
@@ -20,6 +21,7 @@ require("nvim-treesitter.configs").setup {
       enable = true
    },
    rainbow = {
-      enable = true
+      enable = true,
+      extended_mode = true
    }
 }

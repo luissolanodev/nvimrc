@@ -4,7 +4,14 @@ api.nvim_set_keymap("n", "<C-k>", "<cmd>BufferLineCycleNext<CR>", {noremap = tru
 
 require("bufferline").setup {
    options = {
-      offsets = {{filetype = "NvimTree", text = "File Explorer", highlight = "FileExplorer"}}
+      offsets = {
+         {
+            filetype = "NvimTree",
+            text = "Nvim tree",
+            highlight = "FileExplorer"
+         }
+      },
+      separator_style = 'slant'
    }
 }
-vim.cmd("highlight FileExplorer gui=bold,italic")
+vim.cmd("hi FileExplorer gui=bold,italic")

@@ -2,7 +2,10 @@ return require('packer').startup(function(use)
    ----------------------------------------------------------------------
    --                           PACKER.NVIM                            --
    ----------------------------------------------------------------------
-   use 'wbthomason/packer.nvim'
+   use {
+      'wbthomason/packer.nvim',
+      event = 'VimEnter'
+   }
    ----------------------------------------------------------------------
    --                          NVIM-LSPCONFIG                          --
    ----------------------------------------------------------------------
@@ -124,6 +127,7 @@ return require('packer').startup(function(use)
    ----------------------------------------------------------------------
    use {
       'kyazdani42/nvim-web-devicons',
+      after = 'packer.nvim',
       config = function()
          require('plugins.devicons')
       end
@@ -133,6 +137,7 @@ return require('packer').startup(function(use)
    ----------------------------------------------------------------------
    use {
       'akinsho/bufferline.nvim',
+      after = 'nvim-web-devicons',
       config = function()
          require('plugins.bufferline')
       end,
@@ -143,6 +148,7 @@ return require('packer').startup(function(use)
    ----------------------------------------------------------------------
    use {
       'kyazdani42/nvim-tree.lua',
+      cmd = 'NvimTreeToggle',
       config = function()
          require('plugins.nvimtree')
       end

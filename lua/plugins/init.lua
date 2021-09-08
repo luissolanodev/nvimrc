@@ -1,11 +1,8 @@
-return require('packer').startup(function(use)
+require('packer').startup(function(use)
    ----------------------------------------------------------------------
    --                           PACKER.NVIM                            --
    ----------------------------------------------------------------------
-   use {
-      'wbthomason/packer.nvim',
-      event = 'VimEnter'
-   }
+   use 'wbthomason/packer.nvim'
    ----------------------------------------------------------------------
    --                          NVIM-LSPCONFIG                          --
    ----------------------------------------------------------------------
@@ -67,7 +64,7 @@ return require('packer').startup(function(use)
    ----------------------------------------------------------------------
    --                           CMP-TABNINE                            --
    ----------------------------------------------------------------------
-   use { 'tzachar/cmp-tabnine', run='./install.sh' }
+   use { 'tzachar/cmp-tabnine', run = './install.sh' }
    ----------------------------------------------------------------------
    --                            COMPE-TMUX                            --
    ----------------------------------------------------------------------
@@ -115,7 +112,7 @@ return require('packer').startup(function(use)
    use {
       'windwp/nvim-autopairs',
       config = function()
-         require('nvim-autopairs').setup()
+         require('plugins.autopairs')
       end
    }
    ----------------------------------------------------------------------
@@ -127,7 +124,6 @@ return require('packer').startup(function(use)
    ----------------------------------------------------------------------
    use {
       'kyazdani42/nvim-web-devicons',
-      after = 'packer.nvim',
       config = function()
          require('plugins.devicons')
       end
@@ -137,7 +133,6 @@ return require('packer').startup(function(use)
    ----------------------------------------------------------------------
    use {
       'akinsho/bufferline.nvim',
-      after = 'nvim-web-devicons',
       config = function()
          require('plugins.bufferline')
       end,
@@ -148,7 +143,6 @@ return require('packer').startup(function(use)
    ----------------------------------------------------------------------
    use {
       'kyazdani42/nvim-tree.lua',
-      cmd = 'NvimTreeToggle',
       config = function()
          require('plugins.nvimtree')
       end
@@ -177,43 +171,43 @@ return require('packer').startup(function(use)
    use {
       'folke/twilight.nvim',
       config = function()
-         require('twilight').setup()
+         require('plugins.twilight')
       end
    }
    ----------------------------------------------------------------------
    --                          DASHBOARD-NVIM                          --
    ----------------------------------------------------------------------
-   -- use {
-   -- 'glepnir/dashboard-nvim',
-   -- config = function()
-   -- require('plugins.dashboard')
-   -- end
-   -- }
+   use {
+      'glepnir/dashboard-nvim',
+      config = function()
+         require('plugins.dashboard')
+      end
+   }
    ----------------------------------------------------------------------
    --                          COMMENTED.NVIM                          --
    ----------------------------------------------------------------------
    use {
       'winston0410/commented.nvim',
       config = function()
-         require('commented').setup()
+         require('plugins.commented')
       end
    }
    ----------------------------------------------------------------------
    --                              NEORG                               --
    ----------------------------------------------------------------------
-   -- use {
-   -- 'vhyrro/neorg',
-   -- config = function()
-   -- require('plugins.neorg')
-   -- end
-   -- }
+   use {
+      'vhyrro/neorg',
+      config = function()
+         require('plugins.neorg')
+      end
+   }
    ----------------------------------------------------------------------
    --                             GITSIGNS                             --
    ----------------------------------------------------------------------
    use {
       'lewis6991/gitsigns.nvim',
       config = function()
-         require('gitsigns').setup()
+         require('plugins.gitsigns')
       end
    }
    ----------------------------------------------------------------------
@@ -270,13 +264,13 @@ return require('packer').startup(function(use)
    ----------------------------------------------------------------------
    --                           TROUBLE.NVIM                           --
    ----------------------------------------------------------------------
-   -- use {
-   -- 'folke/trouble.nvim',
-   -- requires = 'kyazdani42/nvim-web-devicons',
-   -- config = function()
-   -- require('plugins.trouble')
-   -- end
-   -- }
+   use {
+      'folke/trouble.nvim',
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = function()
+         require('plugins.trouble')
+      end
+   }
    ----------------------------------------------------------------------
    --                        TODO-COMMENTS.NVIM                        --
    ----------------------------------------------------------------------
@@ -284,44 +278,33 @@ return require('packer').startup(function(use)
       'folke/todo-comments.nvim',
       requires = 'nvim-lua/plenary.nvim',
       config = function()
-         require('todo-comments').setup()
+         require('plugins.todocomments')
       end
    }
    ----------------------------------------------------------------------
    --                          WHICH-KEY.NVIM                          --
    ----------------------------------------------------------------------
-   -- use {
-   -- 'folke/which-key.nvim',
-   -- config = function()
-   -- require('plugins.whichkey')
-   -- end
-   -- }
-   --
+   use {
+      'folke/which-key.nvim',
+      config = function()
+         require('plugins.whichkey')
+      end
+   }
    ----------------------------------------------------------------------
    --                        NVIM-COMMENT-FRAME                        --
    ----------------------------------------------------------------------
    use {
       's1n7ax/nvim-comment-frame',
       config = function()
-         require('nvim-comment-frame').setup()
+         require('plugins.commentframe')
       end,
       requires = 'treesitter/nvim-treesitter'
    }
-   ----------------------------------------------------------------------
-   --                          NEBULOUS.NVIM                           --
-   ----------------------------------------------------------------------
-   -- use {
-      -- 'LuisxSullivaN/nebulous.nvim',
-      -- config = function()
-         -- require('plugins.nebulous')
-      -- end
-   -- }
    ----------------------------------------------------------------------
    --                            CATPUCCINO                            --
    ----------------------------------------------------------------------
    use {
       'Pocco81/Catppuccino.nvim',
-      after = 'bufferline.nvim',
       config = function()
          require('plugins.catppuccino')
       end,

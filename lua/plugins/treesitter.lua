@@ -1,6 +1,8 @@
 require("nvim-treesitter.configs").setup {
    ensure_installed = {
       "javascript",
+      "typescript",
+      "tsx",
       "html",
       "css",
       "lua",
@@ -10,6 +12,9 @@ require("nvim-treesitter.configs").setup {
       "cpp",
       "lua",
       "toml"
+   },
+   playgroud = {
+      enable = true
    },
    indent = {
       enable = true

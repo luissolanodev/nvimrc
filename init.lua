@@ -16,8 +16,6 @@ opt.colorcolumn = { '80' }
 opt.showtabline = 2
 opt.encoding = 'utf-8'
 opt.hidden = true
-opt.list = true
-opt.listchars = { eol = '$' }
 opt.fillchars = { vert = '┊', eob = ' ' }
 opt.termguicolors = true
 vim.g.mapleader = ','

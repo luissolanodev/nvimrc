@@ -1,30 +1,43 @@
 local catppuccino = require('catppuccino')
+local variant = 'neon_latte'
+local cp_api = require('catppuccino.api.colors')
+local err, colors = cp_api.get_colors(variant)
+
+if err.status then
+   catppuccino.remap({}, {
+      VertSplit = { fg = colors.magenta },
+      NvimTreeVertSplit = { fg = colors.magenta },
+      NvimTreeRootFolder = { fg = colors.blue, style = 'bold,italic'},
+      TSTagAttribute = { style = 'italic' }
+   })
+end
 
 catppuccino.setup {
-   colorscheme = 'neon_latte',
+   colorscheme = variant,
    term_colors = true,
    styles = {
-      comments = "italic",
-      functions = "italic",
-      keywords = "italic",
-      strings = "italic",
-      variables = "NONE",
+      comments = 'italic',
+      functions = 'italic',
+      keywords = 'bold,italic',
+      strings = 'NONE',
+      variables = 'NONE',
    },
    integrations = {
+      cmp = true,
       treesitter = true,
       native_lsp = {
          enabled = true,
          virtual_text = {
-            errors = "italic",
-            hints = "italic",
-            warnings = "italic",
-            information = "italic",
+            errors = 'italic',
+            hints = 'italic',
+            warnings = 'italic',
+            information = 'italic',
          },
          underlines = {
-            errors = "undercurl",
-            hints = "undercurl",
-            warnings = "undercurl",
-            information = "undercurl",
+            errors = 'undercurl',
+            hints = 'undercurl',
+            warnings = 'undercurl',
+            information = 'undercurl',
          }
       },
       lsp_trouble = true,
@@ -52,5 +65,4 @@ catppuccino.setup {
       ts_rainbow = true
    }
 }
-
-catppuccino.load()
+vim.cmd('colorscheme catppuccino')

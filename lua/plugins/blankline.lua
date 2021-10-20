@@ -10,7 +10,8 @@ require('indent_blankline').setup {
    show_current_context = true,
    context_patterns = {
       "declaration", "expression", "pattern", "primary_expression",
-      "statement", "switch_body", "jsx_element", "object", "function", "table"
+      "statement", "switch_body", "jsx_element", "object", "function", "table",
+      "jsx_self_closing_element"
    },
    -- char_highlight_list = {
       -- 'IndentBlanklineIndent1',

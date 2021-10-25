@@ -65,4 +65,4 @@ catppuccino.setup {
       ts_rainbow = true
    }
 }
-vim.cmd('colorscheme catppuccino')
+-- vim.cmd('colorscheme catppuccino')

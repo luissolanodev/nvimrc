@@ -80,7 +80,7 @@ require('packer').startup(function(use)
       end
    }
    use {
-      'shadmansaleh/lualine.nvim',
+      'nvim-lualine/lualine.nvim',
       config = function()
          require('plugins.lualine')
       end
@@ -203,6 +203,12 @@ require('packer').startup(function(use)
       'EdenEast/nightfox.nvim',
       config = function()
          require('plugins.nightfox')
+      end
+   }
+   use {
+      'projekt0n/github-nvim-theme',
+      config = function()
+         require('plugins.githubtheme')
       end
    }
 end)

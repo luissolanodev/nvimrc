@@ -9,7 +9,9 @@ require('packer').startup(function(use)
          require('plugins.lspconfig')
       end
    }
-   use('kabouzeid/nvim-lspinstall')
+
+   use { "williamboman/mason.nvim" }
+   use { 'williamboman/mason-lspconfig.nvim'}
    use('ray-x/lsp_signature.nvim')
    use {
       'hrsh7th/nvim-cmp',
@@ -26,7 +28,6 @@ require('packer').startup(function(use)
    use('saadparwaiz1/cmp_luasnip')
    use('octaltree/cmp-look')
    use { 'tzachar/cmp-tabnine', run = './install.sh' }
-   use { 'andersevenrud/compe-tmux', branch = 'cmp' }
    use {
       'L3MON4D3/LuaSnip',
       config = function()
@@ -41,7 +42,6 @@ require('packer').startup(function(use)
          require('plugins.treesitter')
       end
    }
-   use('nvim-treesitter/playground')
    use {
       'windwp/nvim-ts-autotag',
       requires = 'nvim-treesitter/nvim-treesitter'
@@ -98,21 +98,9 @@ require('packer').startup(function(use)
       end
    }
    use {
-      'glepnir/dashboard-nvim',
-      config = function()
-         require('plugins.dashboard')
-      end
-   }
-   use {
       'winston0410/commented.nvim',
       config = function()
          require('plugins.commented')
-      end
-   }
-   use {
-      'vhyrro/neorg',
-      config = function()
-         require('plugins.neorg')
       end
    }
    use {
@@ -133,7 +121,6 @@ require('packer').startup(function(use)
          require('plugins.colorizer')
       end
    }
-   use('jbyuki/venn.nvim')
    use {
       'famiu/bufdelete.nvim',
       config = function()
@@ -171,12 +158,6 @@ require('packer').startup(function(use)
       end
    }
    use {
-      'folke/which-key.nvim',
-      config = function()
-         require('plugins.whichkey')
-      end
-   }
-   use {
       's1n7ax/nvim-comment-frame',
       config = function()
          require('plugins.commentframe')
@@ -194,21 +175,9 @@ require('packer').startup(function(use)
 --                              COLORS                              --
 ----------------------------------------------------------------------
    use {
-      'Pocco81/Catppuccino.nvim',
+      'catppuccin/nvim',
       config = function()
-         require('plugins.catppuccino')
+         require('plugins.catppuccin')
       end,
-   }
-   use {
-      'EdenEast/nightfox.nvim',
-      config = function()
-         require('plugins.nightfox')
-      end
-   }
-   use {
-      'projekt0n/github-nvim-theme',
-      config = function()
-         require('plugins.githubtheme')
-      end
    }
 end)

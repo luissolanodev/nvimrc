@@ -13,9 +13,6 @@ require("nvim-treesitter.configs").setup {
       "lua",
       "toml"
    },
-   playgroud = {
-      enable = true
-   },
    indent = {
       enable = true
    },

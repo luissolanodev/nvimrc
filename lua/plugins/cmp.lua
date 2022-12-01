@@ -104,7 +104,7 @@ cmp.setup {
    snippet = {
       expand = expand_snippet,
    },
-   mapping = {
+   mapping = cmp.mapping.preset.insert({
       ['<C-p>'] = cmp.mapping.select_prev_item(),
       ['<C-n>'] = cmp.mapping.select_next_item(),
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -113,14 +113,16 @@ cmp.setup {
       ['<C-e>'] = cmp.mapping.close(),
       ['<Tab>'] = cmp.mapping(tab_completion, { 'i', 's' }),
       ['<S-Tab>'] = cmp.mapping(shift_tab_completion, { 'i', 's' }),
-   },
-   documentation = {
-      border = 'single'
+   }),
+
+   window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
    },
    formatting = {
       format = format_completion
    },
-   sources = {
+   sources = cmp.config.sources({
       { name = 'luasnip' },
       { name = 'nvim_lsp' },
       { name = 'nvim_lua' },
@@ -131,16 +133,20 @@ cmp.setup {
       { name = 'emoji' },
       { name = 'look' },
       { name = 'tmux' }
-   }
+   })
 }
 
-require("nvim-autopairs.completion.cmp").setup {
-   map_cr = true, --  map <CR> on insert mode
-   map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
-   auto_select = false, -- automatically select the first item
-   insert = false, -- use insert confirm behavior instead of replace
-   map_char = { -- modifies the function or method delimiter by filetypes
-      all = '(',
-      tex = '{'
-   }
-}
+cmp.event:on(
+  'confirm_done',
+  require('nvim-autopairs.completion.cmp').on_confirm_done()
+)
+--  require("nvim-autopairs.completion.cmp").setup {
+   --  map_cr = true, --  map <CR> on insert mode
+   --  map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
+   --  auto_select = false, -- automatically select the first item
+   --  insert = false, -- use insert confirm behavior instead of replace
+   --  map_char = { -- modifies the function or method delimiter by filetypes
+      --  all = '(',
+      --  tex = '{'
+   --  }
+--  }

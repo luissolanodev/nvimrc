@@ -1,11 +1,13 @@
-local g = vim.g
-g.nvim_tree_indent_markers = 1 -- 0 by default, this option shows indent markers when folders are open
-g.nvim_tree_root_folder_modifier = ':t' -- ':~' This is the default. See :help filename-modifiers for more options
-g.nvim_tree_group_empty = 1 -- 0 by default, compact folders that only contain a single folder into one node in the file tree
-g.nvim_tree_git_hl = 1 -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
-g.nvim_tree_add_trailing = 1 --  by default, append a trailing slash to folder names
-
 require("nvim-tree").setup {
+  renderer = {
+    indent_markers = {
+      enable = true -- this option shows indent markers when folders are open
+    },
+    root_folder_modifier = ':t', -- ':~' This is the default. See :help filename-modifiers for more options
+    group_empty = true, -- compact folders that only contain a single folder into one node in the file tree
+    highlight_git = true, -- will enable file highlight for git attributes (can be used without the icons).
+    add_trailing = true -- append a trailing slash to folder names
+  },
    -- hijack the cursor in the tree to put it at the start of the filename
    hijack_cursor = true,
    -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)

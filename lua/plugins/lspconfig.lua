@@ -6,16 +6,6 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
 
-local lsp_formatting = function(bufnr)
-    vim.lsp.buf.format({
-        filter = function(client)
-            -- apply whatever logic you want (in this example, we'll only use null-ls)
-            return client.name == "null-ls"
-        end,
-        bufnr = bufnr,
-    })
-end
--- Format on save
 local async_formatting = function(bufnr)
     bufnr = bufnr or vim.api.nvim_get_current_buf()
 
@@ -96,10 +86,6 @@ local on_attach = function(client, bufnr)
         })
     end
 
-    if client.server_capabilities.documentSymbolProvider then
-        require("nvim-navic").attach(client, bufnr)
-    end
-
     -- Format on save
     if client.supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -118,7 +104,7 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "tsserver", "tailwindcss", "jsonls", "jdtls", "prismals" },
+    ensure_installed = { "lua_ls", "ts_ls", "tailwindcss", "jsonls", "jdtls", "prismals" },
     automatic_installation = true,
 })
 
@@ -152,7 +138,7 @@ null_ls.setup({
     },
 })
 
-lspconfig["tsserver"].setup(general_lsp_config)
+lspconfig["ts_ls"].setup(general_lsp_config)
 
 lspconfig["tailwindcss"].setup(general_lsp_config)
 

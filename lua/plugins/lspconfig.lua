@@ -124,20 +124,6 @@ lspconfig["lua_ls"].setup(vim.tbl_extend("error", general_lsp_config, {
     },
 }))
 
-local null_ls = require("null-ls")
-
-null_ls.setup({
-    on_attach = on_attach,
-    sources = {
-        null_ls.builtins.formatting.prettierd.with({
-            dynamic_command = require("null-ls.helpers.command_resolver").from_node_modules(),
-        }),
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.code_actions.gitsigns,
-        null_ls.builtins.diagnostics.eslint_d,
-    },
-})
-
 lspconfig["ts_ls"].setup(general_lsp_config)
 
 lspconfig["tailwindcss"].setup(general_lsp_config)
@@ -162,15 +148,21 @@ vim.diagnostic.config({
         prefix = "💀",
         spacing = 0,
     },
-    signs = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = "󰠠 ",
+        },
+        linehl = {
+            [vim.diagnostic.severity.ERROR] = "Error",
+            [vim.diagnostic.severity.WARN] = "Warn",
+            [vim.diagnostic.severity.INFO] = "Info",
+            [vim.diagnostic.severity.HINT] = "Hint",
+        },
+    },
     underline = true,
     update_in_insert = true,
     severity_sort = false,
 })
-
--- Change diagnostic symbols in the sign column (gutter)
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end

@@ -124,6 +124,12 @@ return require("packer").startup(function(use)
         "jose-elias-alvarez/null-ls.nvim",
         requires = { { "nvim-lua/plenary.nvim" } },
     })
+    use({
+        "stevearc/conform.nvim",
+        config = function()
+            require("conform").setup()
+        end,
+    })
 
     use({
         "folke/tokyonight.nvim",

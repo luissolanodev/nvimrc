@@ -1,7 +1,14 @@
+local utils = require("config.utils")
+
 return {
   "folke/snacks.nvim",
   opts = {
     picker = {
+      icons = {
+        files = {
+          enabled = utils.has_nerd_fonts_support,
+        },
+      },
       sources = {
         explorer = {
           win = {

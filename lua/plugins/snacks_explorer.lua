@@ -12,7 +12,8 @@ return {
       end
       local fr, fg_, fb = parse(fg)
       local br, bg_, bb = parse(bg)
-      return string.format("#%02x%02x%02x",
+      return string.format(
+        "#%02x%02x%02x",
         math.floor(fr * alpha + br * (1 - alpha)),
         math.floor(fg_ * alpha + bg_ * (1 - alpha)),
         math.floor(fb * alpha + bb * (1 - alpha))
@@ -50,6 +51,7 @@ return {
     }
     opts.picker.sources = {
       explorer = {
+        hidden = true,
         win = {
           list = {
             keys = {

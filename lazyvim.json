@@ -1,5 +1,8 @@
 {
   "extras": [
+    "lazyvim.plugins.extras.editor.telescope",
+    "lazyvim.plugins.extras.lang.angular",
+    "lazyvim.plugins.extras.lang.go",
     "lazyvim.plugins.extras.lang.tex",
     "lazyvim.plugins.extras.lang.typescript"
   ],

@@ -13,6 +13,10 @@ return {
           disable_devicons = not utils.has_nerd_fonts_support,
           hidden = true,
         },
+        live_grep = {
+          theme = "ivy",
+          disable_devicons = not utils.has_nerd_fonts_support,
+        },
       },
       extensions = {
         fzf = {

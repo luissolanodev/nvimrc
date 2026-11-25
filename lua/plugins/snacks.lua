@@ -69,6 +69,10 @@ return {
               ["<Esc>"] = false,
               ["<C-p>"] = false,
               ["<leader>/"] = false,
+              ["l"] = false,
+              ["h"] = false,
+              ["j"] = false,
+              ["k"] = false,
             },
           },
           input = {
